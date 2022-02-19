@@ -56,7 +56,9 @@
       transition: transform 1s ease-in-out;
       transform: translate(-50%, 150%);
     }
+
     .cardDummy2 {
+      animation: fadein 4s;
       width: 21.87em;
       height: 30.6em;
       margin: 0 auto;
@@ -73,12 +75,13 @@
         width: 100%;
       }
     }
-    .cardDumm2Trans {
+    .cardDummy2Trans {
       transition: transform 1s ease-in-out;
       transition-delay: 1s;
       transform: translateX(-50%);
       visibility: visible;
     }
+
     .stack {
       position: relative;
       z-index: -1;

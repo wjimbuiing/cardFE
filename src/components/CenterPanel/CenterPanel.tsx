@@ -7,20 +7,18 @@ function CenterPanel({
   drawnCards,
   activeIndex,
   stackSize,
-}: // isNewCard,
-{
+  isNewCard,
+}: {
   name: string;
   handleDraw: () => void;
   drawnCards: ICard[];
   activeIndex: number | undefined;
   stackSize: number;
+  isNewCard: boolean;
   // isNewCard: boolean;
 }) {
   // local state of animation playing
   const [isPlaying, setIsPlaying] = useState(false);
-
-  // * local state for animation checking if it is for new card or already drawn card
-  const [isNewCard, setIsNewCard] = useState(true);
 
   // everytime a new card is drawn or selected an drawn card, animation restarts
   useEffect(() => {
@@ -33,9 +31,7 @@ function CenterPanel({
     return () => clearTimeout(timer);
   }, [drawnCards, activeIndex]);
 
-  useEffect(() => {
-    if (drawnCards.length >= 2) setIsNewCard(false);
-  }, [activeIndex]);
+
 
   return (
     <section className={`${styles.contentC}`}>
@@ -53,8 +49,8 @@ function CenterPanel({
         ></div>
         <div
           className={`${styles.cardDummy2} ${
-            isPlaying && styles.cardDumm2Trans
-          }`}
+            isPlaying && styles.cardDummy2Trans
+          } `}
         >
           {activeIndex !== undefined && (
             <img src={drawnCards[activeIndex].image} alt="" />
