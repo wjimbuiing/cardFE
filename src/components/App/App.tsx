@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
+import formatDate from "../../lib/formatDate";
 import CenterPanel from "../CenterPanel/CenterPanel";
 import LeftPanel from "../LeftPanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
@@ -14,7 +15,7 @@ export interface ICard {
   };
   value: string;
   suit: string;
-  time: number;
+  time: string;
 }
 
 function App() {
@@ -39,7 +40,7 @@ function App() {
 
   // update function: push new card to (the start of) local drawn cards (max 5)
   const pushDrawnCards = (item: ICard) => {
-    setDrawnCards([{ ...item, time: Date.now() }, ...drawnCards.slice(0, 4)]);
+    setDrawnCards([{ ...item, time: formatDate() }, ...drawnCards.slice(0, 4)]);
   };
 
   // restart game function
