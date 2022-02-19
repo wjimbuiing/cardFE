@@ -1,4 +1,3 @@
-import { useEffect, useState } from "react";
 import { ICard } from "../App/App";
 import styles from "./rightPanel.module.scss";
 
@@ -9,6 +8,8 @@ function RightPanel({
   drawnCards: ICard[];
   setActiveIndex: (i: number | undefined) => void;
 }) {
+  if (drawnCards.length === 0) return null;
+
   return (
     <section className={`${styles.contentC}`}>
       <article className={`${styles.lastCardsC}`}>
