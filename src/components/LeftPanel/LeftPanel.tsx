@@ -1,17 +1,25 @@
 import styles from "./leftPanel.module.scss";
-function LeftPanel({ username }: { username: string }) {
+function LeftPanel({
+  name,
+  handleRestart,
+}: {
+  name: string;
+  handleRestart: () => void;
+}) {
   return (
-    <section className={`${styles.contentC}`}>
-      <article className={`${styles.topC}`}>
-        <div>
+    <section className={`${styles.contentC} `}>
+      <article className={`${styles.topC} `}>
+        <div className={`${styles.logoC} `}>
           <img src="/icons/logo.png" alt="" />
         </div>
-        <div className={`${styles.adminC}`}>
-          <div className={`${styles.adminTools}`}>Admin tools</div>
+        <div className={`${styles.adminC} `}>
+          <div className={`${styles.adminTools} `}>Admin tools</div>
           <ul className={`${styles.toolsC}`}>
             <li>
-              <img src="/icons/restart.svg" alt="" />
-              <span>Restart Game</span>
+              <div onClick={() => handleRestart()}>
+                <img src="/icons/restart.svg" alt="" />
+                <span>Restart Game</span>
+              </div>
             </li>
           </ul>
         </div>
@@ -19,7 +27,7 @@ function LeftPanel({ username }: { username: string }) {
       <article className={`${styles.botC}`}>
         <div className={`${styles.userImage}`}></div>
         <div className={`${styles.userInfoC}`}>
-          <div className={`${styles.username}`}>{username}</div>
+          <div className={`${styles.name}`}>{name}</div>
           <div className={`${styles.accountType}`}>Free account</div>
         </div>
       </article>

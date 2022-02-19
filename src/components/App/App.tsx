@@ -5,7 +5,7 @@ import LeftPanel from "../LeftPanel/LeftPanel";
 import RightPanel from "../RightPanel/RightPanel";
 import styles from "./app.module.scss";
 
-interface ICard {
+export interface ICard {
   code: string;
   image: string;
   images: {
@@ -14,17 +14,19 @@ interface ICard {
   };
   value: string;
   suit: string;
-  time: Date;
+  time: number;
 }
 
 function App() {
   // modify {fname} here
   const data = {
-    username: "fname",
+    name: "fname",
   };
 
   // loading state when first load app
   const [loading, setLoading] = useState(true);
+  // fetching state everytime making request to API
+  const [fetching, setFetching] = useState(false);
 
   // local state for deckID
   const [deckID, setDeckID] = useState<string>("");
@@ -32,14 +34,21 @@ function App() {
   // local state for previously drawn cards
   const [drawnCards, setDrawnCards] = useState<ICard[]>([]);
 
+  // index of active/selected card in the drawnCards
+  const [activeIndex, setActiveIndex] = useState<number | undefined>();
+
+  // update function: push new card to (the start of) local drawn cards (max 5)
   const pushDrawnCards = (item: ICard) => {
-    setDrawnCards([item]);
+    setDrawnCards([{ ...item, time: Date.now() }, ...drawnCards.slice(0, 4)]);
   };
 
   // restart game function
   const handleRestart = async () => {
     try {
+      setActiveIndex(undefined);
+      setStackSize(52);
       setLoading(true);
+      setDrawnCards([]);
       const res = await axios.get(
         "https://deckofcardsapi.com/api/deck/new/shuffle/?deck_count=1"
       );
@@ -53,20 +62,53 @@ function App() {
     }
   };
 
+  // draw new card function
+  const handleDraw = async () => {
+    try {
+      setFetching(true);
+      const res = await axios.get(
+        `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
+      );
+      if (res.data.success === true) {
+        pushDrawnCards(res.data.cards[0]);
+        setActiveIndex(0);
+        setStackSize(res.data.remaining);
+      }
+      setFetching(false);
+    } catch (error) {
+      console.log({ error });
+      setFetching(false);
+    }
+  };
+
+  // suffle and generate new deck when the app load up (once)
   useEffect(() => {
-    // handleRestart()
+    handleRestart();
   }, []);
+
+  // * Extra features:
+  // * number of cards left in stack (adjust stack size accordingly)
+  const [stackSize, setStackSize] = useState(52);
 
   return (
     <section className={`${styles.contentC}`}>
       <article className={`${styles.leftC}`}>
-        <LeftPanel username={data.username}></LeftPanel>
+        <LeftPanel name={data.name} handleRestart={handleRestart}></LeftPanel>
       </article>
       <article className={`${styles.centerC}`}>
-        <CenterPanel username={data.username}></CenterPanel>
+        <CenterPanel
+          name={data.name}
+          handleDraw={handleDraw}
+          drawnCards={drawnCards}
+          activeIndex={activeIndex}
+          stackSize={stackSize}
+        ></CenterPanel>
       </article>
       <article className={`${styles.rightC}`}>
-        <RightPanel></RightPanel>
+        <RightPanel
+          drawnCards={[...drawnCards]}
+          setActiveIndex={setActiveIndex}
+        ></RightPanel>
       </article>
     </section>
   );

@@ -2,13 +2,13 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  margin-top: 3rem;
-  gap: 3.25rem;
+  margin-top: 3em;
 
   .greetingC {
     width: calc(100% - 8rem);
-    padding: 0 4rem;
+    padding: 0 4em;
     font-weight: bold;
+    white-space: nowrap;
     > div:first-child {
       font-size: 1.5em;
       color: #11142d;
@@ -22,30 +22,91 @@
     }
   }
   .cardC {
-      width: 100%;
-    .cardBack {
+    width: 100%;
+    margin-top: 3.25em;
+    > div {
+      margin: 0 auto;
       width: 21.9em;
-    //   width: 350px;
-    // width: 50%;
-    margin: 0 auto;
-    //   height: 420px;
-    height: 26.25em;
-      border-radius: 24px;
+    }
+    .cardBack {
+      width: 21.87em;
+      //modify first card back heigth here
+      height: 30.6em;
+      margin: 0 auto;
       background-color: #6c5dd3;
+      border-radius: 15px;
+      > img {
+        width: 100%;
+      }
+    }
+    .stack {
+      position: relative;
+      z-index: -1;
+      // background-color: #cfc8ff;
+      // border-bottom: 1rem solid #cfc8ff;
+      background: linear-gradient(
+        to left,
+        #928eaf 0%,
+        #cfc8ff 8%,
+        #cfc8ff 92%,
+        #928eaf 100%
+      );
+      border-radius: 15px;
+      // to be updated to display stack thickness
+      // height: 3.5rem;
+      top: -2.5rem;
+      // top: -3rem;
+    }
+
+    .stackShadow {
+      position: relative;
+      z-index: -2;
+
+      top: -2.5rem;
+      width: calc(21.9em - 24px);
+      // border-radius: 50%;
+      box-shadow: 0px 1px 8px 1px rgba(64, 62, 62, 0.83);
+      -webkit-box-shadow: 0px 1px 8px 1px rgba(64, 62, 62, 0.83);
+      -moz-box-shadow: 0px 1px 8px 1px rgba(64, 62, 62, 0.83);
     }
   }
   .controllersC {
+    cursor: pointer;
     font-size: 0.875em;
-    background-color: #1b1d21;
-    color: white;
-    padding: 1.125em 6.33em;
+    background: linear-gradient(
+      to left,
+      #484c58 0%,
+      #747a8f 8%,
+      #747a8f 92%,
+      #484c58 100%
+    );
     border-radius: 1rem;
+    color: white;
+    border: none;
+    > div {
+      padding: 1.125em 6.33em;
+      background-color: #1b1d21;
+      border-radius: 1rem;
+      transform: translateY(-6px);
+      &:active {
+        transform: translateY(-2px);
+      }
+    }
   }
-  
 }
 
-@media screen and (max-width: 900px) {
-    .contentC {
-        font-size: 14px;
-    }
+.stack52 {
+  height: 3.5rem;
+}
+.stack39 {
+  height: 3.25rem;
+}
+.stack26 {
+  height: 3rem;
+}
+.stack13 {
+  height: 2.75rem;
+}
+.stack0 {
+  height: 2.5rem;
 }

@@ -1,67 +1,125 @@
 .contentC {
   display: flex;
-  height: inherit;
+  height: 100%;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   .topC {
     width: 100%;
-    margin-top: 4rem;
+    margin-top: 4em;
     display: flex;
     flex-direction: column;
-    gap: 2rem;
+    gap: 2em;
     align-items: center;
+    .logoC {
+        > img {
+          height: 3em;
+        }
+    }
     .adminC {
       width: inherit;
       display: flex;
       flex-direction: column;
-      gap: 1rem;
+      gap: 1em;
       .adminTools {
-        font-size: 12px;
+        font-size: 0.75em;
         color: #808191;
-        margin-left: 2.5rem;
+        margin-left: 2.5em;
       }
       .toolsC {
         display: flex;
-        font-size: 14px;
+        font-size: 0.875em;
         flex-direction: column;
         align-items: center;
         justify-content: center;
 
         > li {
-          padding: 18px 44px;
-          display: flex;
-          justify-content: center;
-          background-color: #6c5dd3;
-          color: white;
-          gap: 1rem;
+          cursor: pointer;
+          background: linear-gradient(
+            to left,
+            #5a528d 0%,
+            #9285e7 8%,
+            #9285e7 92%,
+            #5a528d 100%
+          );
           border-radius: 12px;
+          > div {
+            padding: 1.125em 2.75em;
+            display: flex;
+            justify-content: center;
+            background-color: #6c5dd3;
+            color: white;
+            gap: 1em;
+            border-radius: 12px;
+            transform: translateY(-6px);
+            > img {
+              height: 1.5em;
+            }
+            > span {
+              width: 7em;
+            }
+            &:active {
+              transform: translateY(-2px);
+            }
+          }
         }
       }
     }
   }
 
   .botC {
-    margin: 30px 40px;
+    margin: 1.875em 2.5em;
     display: flex;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 1em;
     .userImage {
-      width: 40px;
-      height: 40px;
+      width: 2.5em;
+      height: 2.5em;
       border-radius: 50%;
       background-color: #e5eefd;
     }
     .userInfoC {
-      .username {
-        font-size: 14px;
+      .name {
+        text-transform: capitalize;
+        font-size: 0.875em;
         font-weight: bold;
       }
       .accountType {
-        font-size: 13px;
+        font-size: 0.8125em;
         color: #808191;
       }
+    }
+  }
+}
+
+@media screen and (max-width: 750px) {
+  .contentC {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0;
+    > article {
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 50% !important;
+    }
+    .topC {
+      gap: 1em;
+      margin: 2em 0 0 2em !important;
+      align-items: flex-start;
+      .adminC {
+        width: unset;
+        align-items: flex-start;
+        .adminTools {
+          margin: 0 !important;
+          padding: 0 !important;
+        }
+      }
+    }
+    .botC {
+      margin: 2em 2em 0 0 !important;
+      justify-content: flex-end;
     }
   }
 }
