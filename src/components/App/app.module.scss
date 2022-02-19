@@ -1,0 +1,19 @@
+.contentC {
+  display: flex;
+
+  > article {
+    height: 100vh;
+  }
+  .leftC {
+    width: 16em;
+    border-right: 1px solid #e4e4e4;
+  }
+  .centerC {
+    // width: 60%;
+    width: calc(100% - 16em - 20em);
+  }
+  .rightC {
+    border-left: 1px solid #e4e4e4;
+    width: 20em;
+  }
+}
