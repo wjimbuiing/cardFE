@@ -74,7 +74,6 @@ function App() {
         pushDrawnCards(res.data.cards[0]);
         setActiveIndex(0);
         setStackSize(res.data.remaining);
-        setIsNewCard(true)
       }
       setFetching(false);
     } catch (error) {
@@ -83,11 +82,6 @@ function App() {
     }
   };
 
-  const handleSelectCard = (index: number) => {
-    setActiveIndex(index)
-    setIsNewCard(false)
-  }
-  
   // shuffle and generate new deck when the app load up or restart (once)
   useEffect(() => {
     handleRestart();
@@ -96,9 +90,6 @@ function App() {
   // * Extra features:
   // * number of cards left in stack (adjust stack size accordingly)
   const [stackSize, setStackSize] = useState(52);
-
-  // * local state for animation checking if it is for new card or already drawn card
-  const [isNewCard, setIsNewCard] = useState(true);
 
   return (
     <section className={`${styles.contentC}`}>
@@ -112,13 +103,13 @@ function App() {
           drawnCards={drawnCards}
           activeIndex={activeIndex}
           stackSize={stackSize}
-          isNewCard={isNewCard}
+          // isNewCard={isNewCard}
         ></CenterPanel>
       </article>
       <article className={`${styles.rightC}`}>
         <RightPanel
           drawnCards={[...drawnCards]}
-          handleSelectCard={handleSelectCard}
+          setActiveIndex={setActiveIndex}
         ></RightPanel>
       </article>
     </section>
