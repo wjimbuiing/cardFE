@@ -22,6 +22,8 @@
     }
   }
   .cardC {
+    position: relative;
+    overflow: hidden;
     width: 100%;
     margin-top: 3.25em;
     > div {
@@ -37,6 +39,45 @@
       > img {
         width: 100%;
       }
+    }
+    .cardDummy1 {
+      width: 21.87em;
+      height: 30.6em;
+      margin: 0 auto;
+      background-color: #6c5dd3;
+      border-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translateX(-50%);
+      transition: none;
+    }
+    .cardDummy1Trans {
+      transition: transform 1s ease-in-out;
+      transform: translate(-50%, 150%);
+    }
+    .cardDummy2 {
+      width: 21.87em;
+      height: 30.6em;
+      margin: 0 auto;
+      background-color: #6c5dd3;
+      border-radius: 15px;
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, 150%);
+      transition: none;
+      transition-delay: 0s;
+      visibility: hidden;
+      > img {
+        width: 100%;
+      }
+    }
+    .cardDumm2Trans {
+      transition: transform 1s ease-in-out;
+      transition-delay: 1s;
+      transform: translateX(-50%);
+      visibility: visible;
     }
     .stack {
       position: relative;

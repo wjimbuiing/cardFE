@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import { ICard } from "../App/App";
 import styles from "./centerPanel.module.scss";
 function CenterPanel({
@@ -13,6 +14,20 @@ function CenterPanel({
   activeIndex: number | undefined;
   stackSize: number;
 }) {
+  // local state of animation playing
+  const [isPlaying, setIsPlaying] = useState(false);
+
+  // everytime a new card is drawn or selected an drawn card, animation restarts
+  useEffect(() => {
+    setIsPlaying(false);
+    if (drawnCards.length > 0) {
+      var timer = setTimeout(() => {
+        setIsPlaying(true);
+      }, 100);
+    }
+    return () => clearTimeout(timer);
+  }, [drawnCards, activeIndex]);
+
   return (
     <section className={`${styles.contentC}`}>
       <article className={`${styles.greetingC}`}>
@@ -22,7 +37,16 @@ function CenterPanel({
         <div>Let’s Play! 👋</div>
       </article>
       <article className={`${styles.cardC}`}>
-        <div className={`${styles.cardBack} `}>
+        <div className={`${styles.cardBack}`}></div>
+        <div
+          className={`${styles.cardDummy1}
+        ${isPlaying && styles.cardDummy1Trans}`}
+        ></div>
+        <div
+          className={`${styles.cardDummy2} ${
+            isPlaying && styles.cardDumm2Trans
+          }`}
+        >
           {activeIndex !== undefined && (
             <img src={drawnCards[activeIndex].image} alt="" />
           )}

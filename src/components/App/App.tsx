@@ -82,7 +82,7 @@ function App() {
     }
   };
 
-  // suffle and generate new deck when the app load up (once)
+  // shuffle and generate new deck when the app load up or restart (once)
   useEffect(() => {
     handleRestart();
   }, []);
