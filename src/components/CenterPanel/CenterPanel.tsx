@@ -7,12 +7,14 @@ function CenterPanel({
   drawnCards,
   activeIndex,
   stackSize,
+  isNewCard,
 }: {
   name: string;
   handleDraw: () => void;
   drawnCards: ICard[];
   activeIndex: number | undefined;
   stackSize: number;
+  isNewCard: boolean;
 }) {
   // local state of animation playing
   const [isPlaying, setIsPlaying] = useState(false);
@@ -40,7 +42,7 @@ function CenterPanel({
         <div className={`${styles.cardBack}`}></div>
         <div
           className={`${styles.cardDummy1}
-        ${isPlaying && styles.cardDummy1Trans}`}
+        ${isNewCard && isPlaying && styles.cardDummy1Trans}`}
         ></div>
         <div
           className={`${styles.cardDummy2} ${
