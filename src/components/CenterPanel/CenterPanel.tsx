@@ -40,7 +40,9 @@ function CenterPanel({
         <div>Let’s Play! 👋</div>
       </article>
       <article className={`${styles.cardC}`}>
-        <div className={`${styles.cardBG}`}></div>
+        <div
+          className={`${styles.cardBG} ${stackSize < 1 && styles.bgcNone}`}
+        ></div>
         <div
           className={`${styles.cardDummy1} ${
             isPlaying && styles.cardDummy1Trans
@@ -60,12 +62,12 @@ function CenterPanel({
             stackSize < 39 && styles.stack39
           } ${stackSize < 26 && styles.stack26} ${
             stackSize < 13 && styles.stack13
-          } ${stackSize < 1 && styles.stack0}`}
+          } ${stackSize < 1 && styles.bgcNone}`}
         ></div>
-        <div className={`${styles.stackShadow}`}></div>
+        <div className={`${styles.stackShadow} ${stackSize < 1 && styles.bgcNone}`}></div>
       </article>
       <article className={`${styles.controllersC} `}>
-        <div onClick={() => handleDraw()}>Choose a card!</div>
+        <button type="button" onClick={() => handleDraw()}>Choose a card!</button>
       </article>
     </section>
   );
