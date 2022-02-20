@@ -29,9 +29,7 @@ function CenterPanel({
       }, 100);
     }
     return () => clearTimeout(timer);
-  }, [drawnCards, activeIndex]);
-
-
+  }, [drawnCards]);
 
   return (
     <section className={`${styles.contentC}`}>
@@ -42,20 +40,21 @@ function CenterPanel({
         <div>Let’s Play! 👋</div>
       </article>
       <article className={`${styles.cardC}`}>
-        <div className={`${styles.cardBack}`}></div>
+        <div className={`${styles.cardBG}`}></div>
         <div
-          className={`${styles.cardDummy1}
-        ${isNewCard && isPlaying && styles.cardDummy1Trans}`}
-        ></div>
-        <div
-          className={`${styles.cardDummy2} ${
-            isPlaying && styles.cardDummy2Trans
-          } `}
+          className={`${styles.cardDummy1} ${
+            isPlaying && styles.cardDummy1Trans
+          }`}
         >
           {activeIndex !== undefined && (
-            <img src={drawnCards[activeIndex].image} alt="" />
+            <img
+              src={drawnCards[activeIndex].image}
+              alt=""
+              className={`${isPlaying && styles.cardImg}`}
+            />
           )}
         </div>
+
         <div
           className={`${styles.stack} ${stackSize >= 39 && styles.stack52} ${
             stackSize < 39 && styles.stack39

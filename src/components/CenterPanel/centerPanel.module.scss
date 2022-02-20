@@ -22,43 +22,28 @@
     }
   }
   .cardC {
-    position: relative;
     overflow: hidden;
+    position: relative;
     width: 100%;
     margin-top: 3.25em;
+    transform-style: preserve-3d;
+    perspective: 62.5em;
+    
     > div {
       margin: 0 auto;
       width: 21.9em;
     }
-    .cardBack {
+    .cardBG {
       width: 21.87em;
       height: 30.6em;
       margin: 0 auto;
-      background-color: #6c5dd3;
       border-radius: 15px;
-      > img {
-        width: 100%;
-      }
-    }
-    .cardDummy1 {
-      width: 21.87em;
-      height: 30.6em;
-      margin: 0 auto;
       background-color: #6c5dd3;
-      border-radius: 15px;
-      position: absolute;
-      top: 0;
-      left: 50%;
-      transform: translateX(-50%);
-      transition: none;
-    }
-    .cardDummy1Trans {
-      transition: transform 1s ease-in-out;
-      transform: translate(-50%, 150%);
+      border: 0.1px solid black;
     }
 
-    .cardDummy2 {
-      animation: fadein 4s;
+    .cardDummy1 {
+      border: 1px solid black;
       width: 21.87em;
       height: 30.6em;
       margin: 0 auto;
@@ -67,26 +52,23 @@
       position: absolute;
       top: 0;
       left: 50%;
-      transform: translate(-50%, 150%);
-      transition: none;
-      transition-delay: 0s;
-      visibility: hidden;
+      transform: rotateY(180deg) translateX(50%);
+
       > img {
         width: 100%;
+        visibility: hidden;
+      }
+      .cardImg {
+        animation: cardDisplay 2s forwards;
       }
     }
-    .cardDummy2Trans {
-      transition: transform 1s ease-in-out;
-      transition-delay: 1s;
-      transform: translateX(-50%);
-      visibility: visible;
+    .cardDummy1Trans {
+      animation: sideStep 2s forwards;
     }
 
     .stack {
       position: relative;
       z-index: -1;
-      // background-color: #cfc8ff;
-      // border-bottom: 1rem solid #cfc8ff;
       background: linear-gradient(
         to left,
         #928eaf 0%,
@@ -95,10 +77,7 @@
         #928eaf 100%
       );
       border-radius: 15px;
-      // to be updated to display stack thickness
-      // height: 3.5rem;
       top: -2.5rem;
-      // top: -3rem;
     }
 
     .stackShadow {
@@ -107,7 +86,6 @@
 
       top: -2.5rem;
       width: calc(21.9em - 24px);
-      // border-radius: 50%;
       box-shadow: 0px 1px 8px 1px rgba(64, 62, 62, 0.83);
       -webkit-box-shadow: 0px 1px 8px 1px rgba(64, 62, 62, 0.83);
       -moz-box-shadow: 0px 1px 8px 1px rgba(64, 62, 62, 0.83);
@@ -152,4 +130,34 @@
 }
 .stack0 {
   height: 2.5rem;
+}
+
+@keyframes cardDisplay {
+  0% {
+    visibility: hidden;
+  }
+  30% {
+    visibility: hidden;
+  }
+  31% {
+    visibility: visible;
+  }
+  100% {
+    visibility: visible;
+  }
+}
+
+@keyframes sideStep {
+  0% {
+    transform: translateX(-50%) rotateY(180deg);
+  }
+  25% {
+    transform: translateX(50%) rotateY(180deg);
+  }
+  50% {
+    transform: rotateY(0deg) translateX(50%);
+  }
+  100% {
+    transform: rotateY(0deg) translateX(-50%);
+  }
 }
