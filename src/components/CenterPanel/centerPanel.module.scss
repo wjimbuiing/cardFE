@@ -143,10 +143,10 @@
   0% {
     visibility: hidden;
   }
-  30% {
+  32% {
     visibility: hidden;
   }
-  31% {
+  33% {
     visibility: visible;
   }
   100% {
@@ -156,15 +156,25 @@
 
 @keyframes sideStep {
   0% {
-    transform: translateX(-50%) rotateY(180deg);
+    transform: translateX(-50%)  rotateY(180deg);
   }
+
+  // * move half card width to right then flip to center
+  // 25% {
+  //   transform:  translateX(0%) rotateY(180deg);
+  // }
+  // 50% {
+  //   transform: rotateY(360deg) translateX(-50%);
+  // }
+
+  // * move full width to right then flip then move back to center
   25% {
-    transform: translateX(50%) rotateY(180deg);
+    transform:  translateX(50%) rotateY(180deg);
   }
   50% {
-    transform: rotateY(0deg) translateX(50%);
+    transform: rotateY(360deg) translateX(50%);
   }
   100% {
-    transform: rotateY(0deg) translateX(-50%);
+    transform: rotateY(360deg) translateX(-50%);
   }
 }

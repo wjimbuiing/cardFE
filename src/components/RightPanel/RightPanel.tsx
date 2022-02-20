@@ -3,10 +3,10 @@ import styles from "./rightPanel.module.scss";
 
 function RightPanel({
   drawnCards,
-  handleSelectCard,
+  setActiveIndex,
 }: {
   drawnCards: ICard[];
-  handleSelectCard: (i: number) => void;
+  setActiveIndex: (i: number) => void;
 }) {
   if (drawnCards.length === 0) return null;
 
@@ -19,7 +19,7 @@ function RightPanel({
             <div
               className={`${styles.cardC}`}
               key={index}
-              onClick={() => handleSelectCard(index)}
+              onClick={() => setActiveIndex(index)}
             >
               <div className={`${styles.cardImg}`}>
                 <img src={`${card.image}`} alt="" />

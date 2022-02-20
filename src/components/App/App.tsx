@@ -38,12 +38,25 @@ function App() {
   // index of active/selected card in the drawnCards
   const [activeIndex, setActiveIndex] = useState<number | undefined>();
 
-  // update function: push new card to (the start of) local drawn cards (max 5)
+  /**
+   * @function pushDrawnCards
+   * @params ( Object)
+   * @return void
+   * usage: updating the local state array "drawnCard"
+   * and pushing params Object at the start of the array"drawnCard"
+   */
   const pushDrawnCards = (item: ICard) => {
     setDrawnCards([{ ...item, time: formatDate() }, ...drawnCards.slice(0, 4)]);
   };
 
   // restart game function
+  /**
+   * @async
+   * @function handleRestart
+   * @params (none)
+   * @return void
+   * usage: make get request to backend API to shuffle deck and store deckID local
+   */
   const handleRestart = async () => {
     try {
       setActiveIndex(undefined);
@@ -64,6 +77,14 @@ function App() {
   };
 
   // draw new card function
+  /**
+   * @async
+   * @function handleDraw
+   * @params (none)
+   * @return void
+   * usage: make get request to backend API with deckID value in URL params
+   * then set local state with data returned
+   */
   const handleDraw = async () => {
     try {
       setFetching(true);
@@ -74,7 +95,6 @@ function App() {
         pushDrawnCards(res.data.cards[0]);
         setActiveIndex(0);
         setStackSize(res.data.remaining);
-        setIsNewCard(true)
       }
       setFetching(false);
     } catch (error) {
@@ -83,11 +103,6 @@ function App() {
     }
   };
 
-  const handleSelectCard = (index: number) => {
-    setActiveIndex(index)
-    setIsNewCard(false)
-  }
-  
   // shuffle and generate new deck when the app load up or restart (once)
   useEffect(() => {
     handleRestart();
@@ -96,9 +111,6 @@ function App() {
   // * Extra features:
   // * number of cards left in stack (adjust stack size accordingly)
   const [stackSize, setStackSize] = useState(52);
-
-  // * local state for animation checking if it is for new card or already drawn card
-  const [isNewCard, setIsNewCard] = useState(true);
 
   return (
     <section className={`${styles.contentC}`}>
@@ -112,13 +124,12 @@ function App() {
           drawnCards={drawnCards}
           activeIndex={activeIndex}
           stackSize={stackSize}
-          isNewCard={isNewCard}
         ></CenterPanel>
       </article>
       <article className={`${styles.rightC}`}>
         <RightPanel
           drawnCards={[...drawnCards]}
-          handleSelectCard={handleSelectCard}
+          setActiveIndex={setActiveIndex}
         ></RightPanel>
       </article>
     </section>

@@ -7,15 +7,12 @@ function CenterPanel({
   drawnCards,
   activeIndex,
   stackSize,
-  isNewCard,
 }: {
   name: string;
   handleDraw: () => void;
   drawnCards: ICard[];
   activeIndex: number | undefined;
   stackSize: number;
-  isNewCard: boolean;
-  // isNewCard: boolean;
 }) {
   // local state of animation playing
   const [isPlaying, setIsPlaying] = useState(false);
@@ -64,10 +61,14 @@ function CenterPanel({
             stackSize < 13 && styles.stack13
           } ${stackSize < 1 && styles.bgcNone}`}
         ></div>
-        <div className={`${styles.stackShadow} ${stackSize < 1 && styles.bgcNone}`}></div>
+        <div
+          className={`${styles.stackShadow} ${stackSize < 1 && styles.bgcNone}`}
+        ></div>
       </article>
       <article className={`${styles.controllersC} `}>
-        <button type="button" onClick={() => handleDraw()}>Choose a card!</button>
+        <button type="button" onClick={() => handleDraw()}>
+          Choose a card!
+        </button>
       </article>
     </section>
   );
