@@ -43,7 +43,9 @@
             #5a528d 100%
           );
           border-radius: 12px;
-          > div {
+          > button {
+            cursor: pointer;
+            border: none;
             padding: 1.125em 2.75em;
             display: flex;
             justify-content: center;

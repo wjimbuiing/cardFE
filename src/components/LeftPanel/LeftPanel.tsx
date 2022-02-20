@@ -16,10 +16,10 @@ function LeftPanel({
           <div className={`${styles.adminTools} `}>Admin tools</div>
           <ul className={`${styles.toolsC}`}>
             <li>
-              <div onClick={() => handleRestart()}>
+              <button type="button" onClick={() => handleRestart()}>
                 <img src="/icons/restart.svg" alt="" />
                 <span>Restart Game</span>
-              </div>
+              </button>
             </li>
           </ul>
         </div>
