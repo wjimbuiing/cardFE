@@ -84,7 +84,7 @@ function App(props: { name: string }) {
     try {
       setFetching(true);
       const res = await axios.get(
-        `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=13`
+        `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
       );
       if (res.data.success === true) {
         pushDrawnCards(res.data.cards[0]);
