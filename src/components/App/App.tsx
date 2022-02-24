@@ -18,12 +18,7 @@ export interface ICard {
   time: string;
 }
 
-function App() {
-  // modify {fname} here
-  const data = {
-    name: "fname",
-  };
-
+function App(props: { name: string }) {
   // loading state when first load app
   const [loading, setLoading] = useState(true);
   // fetching state everytime making request to API
@@ -89,7 +84,7 @@ function App() {
     try {
       setFetching(true);
       const res = await axios.get(
-        `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=1`
+        `https://deckofcardsapi.com/api/deck/${deckID}/draw/?count=13`
       );
       if (res.data.success === true) {
         pushDrawnCards(res.data.cards[0]);
@@ -115,11 +110,11 @@ function App() {
   return (
     <section className={`${styles.contentC}`}>
       <article className={`${styles.leftC}`}>
-        <LeftPanel name={data.name} handleRestart={handleRestart}></LeftPanel>
+        <LeftPanel name={props.name} handleRestart={handleRestart}></LeftPanel>
       </article>
-      <article className={`${styles.centerC}`}>
+      <article className={`${styles.centerC} `}>
         <CenterPanel
-          name={data.name}
+          name={props.name}
           handleDraw={handleDraw}
           drawnCards={drawnCards}
           activeIndex={activeIndex}

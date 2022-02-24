@@ -6,7 +6,8 @@ import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    {/* change username here */}
+    <App name={'fname'}/>
   </React.StrictMode>,
   document.getElementById('root')
 );

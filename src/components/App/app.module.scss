@@ -37,16 +37,13 @@
   .contentC {
     font-size: 12px;
     flex-direction: column;
-    > article {
-      width: 100% !important;
+    .leftC,
+    .centerC,
+    .rightC {
+      width: 100%;
     }
     .leftC {
-      height: 20%;
-    }
-    .centerC {
-    }
-    .rightC {
-      // height: 20% !important;
+      height: unset;
     }
   }
 }

@@ -38,7 +38,7 @@ function CenterPanel({
       </article>
       <article className={`${styles.cardC}`}>
         <div
-          className={`${styles.cardBG} ${stackSize < 1 && styles.bgcNone}`}
+          className={`${styles.cardBG} ${stackSize > 0 && styles.cardBGbgc} `}
         ></div>
         <div
           className={`${styles.cardDummy1} ${
@@ -55,20 +55,20 @@ function CenterPanel({
         </div>
 
         <div
-          className={`${styles.stack} ${stackSize >= 39 && styles.stack52} ${
-            stackSize < 39 && styles.stack39
-          } ${stackSize < 26 && styles.stack26} ${
-            stackSize < 13 && styles.stack13
-          } ${stackSize < 1 && styles.bgcNone}`}
+          className={`${stackSize > 0 && styles.stack} ${
+            stackSize >= 39 && styles.stack52
+          } ${stackSize < 39 && stackSize >= 26 && styles.stack39} ${
+            stackSize < 26 && stackSize >= 13 && styles.stack26
+          } ${stackSize < 13 && stackSize >= 1 && styles.stack13} `}
         ></div>
-        <div
-          className={`${styles.stackShadow} ${stackSize < 1 && styles.bgcNone}`}
-        ></div>
+        <div className={`${stackSize > 0 && styles.stackShadow} `}></div>
       </article>
       <article className={`${styles.controllersC} `}>
-        <button type="button" onClick={() => handleDraw()}>
-          Choose a card!
-        </button>
+        {stackSize !== 0 && (
+          <button type="button" onClick={() => handleDraw()}>
+            Choose a card!
+          </button>
+        )}
       </article>
     </section>
   );

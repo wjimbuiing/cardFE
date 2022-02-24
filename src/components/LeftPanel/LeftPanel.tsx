@@ -8,7 +8,7 @@ function LeftPanel({
 }) {
   return (
     <section className={`${styles.contentC} `}>
-      <article className={`${styles.topC} `}>
+      <article className={`${styles.topC}`}>
         <div className={`${styles.logoC} `}>
           <img src="/icons/logo.png" alt="" />
         </div>

@@ -104,26 +104,27 @@
     justify-content: space-between;
     align-items: flex-start;
     gap: 0;
-    > article {
-      margin: 0 !important;
-      padding: 0 !important;
-      width: 50% !important;
+    .topC,
+    .botC {
+      margin: 0;
+      padding: 0;
+      width: 50%;
     }
     .topC {
       gap: 1em;
-      margin: 2em 0 0 2em !important;
+      margin: 2em 0 0 2em;
       align-items: flex-start;
       .adminC {
         width: unset;
         align-items: flex-start;
         .adminTools {
-          margin: 0 !important;
-          padding: 0 !important;
+          margin: 0;
+          padding: 0;
         }
       }
     }
     .botC {
-      margin: 2em 2em 0 0 !important;
+      margin: 2em 2em 0 0;
       justify-content: flex-end;
     }
   }
